@@ -8,15 +8,15 @@
 
 # Resource
 
-[Create React App](https://create-react-app.dev/)
-[Material UI](https://create-react-app.dev/)
-[Mongoose](https://mongoosejs.com/)
-[ExpressJS](https://expressjs.com/)
-[React Router](https://reactrouter.com/)
-[Formik](https://formik.org/)
-[Yup](https://github.com/jquense/yup/)
-[Axios](https://axios-http.com/)
-[ThemovieDB](https://www.themoviedb.org/)
+[Create React App](https://create-react-app.dev/)<br>
+[Material UI](https://create-react-app.dev/)<br>
+[Mongoose](https://mongoosejs.com/)<br>
+[ExpressJS](https://expressjs.com/)<br>
+[React Router](https://reactrouter.com/)<br>
+[Formik](https://formik.org/)<br>
+[Yup](https://github.com/jquense/yup/)<br>
+[Axios](https://axios-http.com/)<br>
+[ThemovieDB](https://www.themoviedb.org/)<br>
 
 # Preview
 
