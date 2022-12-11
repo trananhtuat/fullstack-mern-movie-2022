@@ -17,6 +17,8 @@
     Yup: https://github.com/jquense/yup/
     Axios: https://axios-http.com/
     ThemovieDB: https://www.themoviedb.org/
+    
+[Create React App](https://create-react-app.dev/)
 
 # Preview
 
