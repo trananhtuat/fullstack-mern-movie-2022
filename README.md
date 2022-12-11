@@ -19,6 +19,14 @@
     ThemovieDB: https://www.themoviedb.org/
     
 [Create React App](https://create-react-app.dev/)
+[Material UI](https://create-react-app.dev/)
+[Create React App](https://create-react-app.dev/)
+[Create React App](https://create-react-app.dev/)
+[Create React App](https://create-react-app.dev/)
+[Create React App](https://create-react-app.dev/)
+[Create React App](https://create-react-app.dev/)
+[Create React App](https://create-react-app.dev/)
+[Create React App](https://create-react-app.dev/)
 
 # Preview
 
