@@ -12,6 +12,7 @@
 [Material UI](https://create-react-app.dev/)<br>
 [Mongoose](https://mongoosejs.com/)<br>
 [ExpressJS](https://expressjs.com/)<br>
+[Express Validator](https://express-validator.github.io/docs/)<br>
 [React Router](https://reactrouter.com/)<br>
 [Formik](https://formik.org/)<br>
 [Yup](https://github.com/jquense/yup/)<br>
