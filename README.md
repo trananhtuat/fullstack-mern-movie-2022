@@ -18,6 +18,7 @@
 [Axios](https://axios-http.com/)<br>
 [ThemovieDB](https://www.themoviedb.org/)<br>
 [Swiper](https://swiperjs.com/)<br>
+[JWT](https://github.com/auth0/node-jsonwebtoken)<br>
 
 # Preview
 
