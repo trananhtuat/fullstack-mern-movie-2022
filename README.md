@@ -17,6 +17,7 @@
 [Yup](https://github.com/jquense/yup/)<br>
 [Axios](https://axios-http.com/)<br>
 [ThemovieDB](https://www.themoviedb.org/)<br>
+[Swiper](https://swiperjs.com/)<br>
 
 # Preview
 
