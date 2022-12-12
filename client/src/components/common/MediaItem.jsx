@@ -33,7 +33,7 @@ const MediaItem = ({ media, mediaType }) => {
   }, [media, mediaType]);
 
   return (
-    <Link to={mediaType !== "people" ? routesGen.mediaDetail(mediaType, media.id || media.mediaid) : routesGen.person(media.id)}>
+    <Link to={mediaType !== "people" ? routesGen.mediaDetail(mediaType, media.mediaId || media.id) : routesGen.person(media.id)}>
       <Box sx={{
         ...uiConfigs.style.backgroundImage(posterPath),
         paddingTop: "160%",
