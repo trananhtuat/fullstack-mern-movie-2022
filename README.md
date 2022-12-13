@@ -23,4 +23,4 @@
 
 # Preview
 
-!["Fullstack Responsive Movie Website 2022"]( "Fullstack Responsive Movie Website 2022")
+!["Fullstack Responsive Movie Website 2022"](https://user-images.githubusercontent.com/67447840/207322539-8fcd83e1-8424-4922-980c-91d20cdf761c.png "Fullstack Responsive Movie Website 2022")
