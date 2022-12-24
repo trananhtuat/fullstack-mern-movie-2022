@@ -8,6 +8,8 @@ import * as Yup from "yup";
 import userApi from "../../api/modules/user.api";
 import { setAuthModalOpen } from "../../redux/features/authModalSlice";
 import { setUser } from "../../redux/features/userSlice";
+import GoogleButton from "./GoogleButton";
+import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
 
 const SignupForm = ({ switchAuthState }) => {
   const dispatch = useDispatch();
@@ -53,6 +55,42 @@ const SignupForm = ({ switchAuthState }) => {
 
       if (err) setErrorMessage(err.message);
     }
+  });
+
+  const handleGoogleLogin = useGoogleLogin({
+    onSuccess: async (respose) => {
+      setIsLoginRequest(true);
+      console.log("goooogle");
+
+      try {
+        const res = await axios.get(
+          "https://www.googleapis.com/oauth2/v3/userinfo",
+          {
+            headers: {
+              Authorization: `Bearer ${respose.access_token}`,
+            },
+          }
+        );
+        console.log(res.data);
+        console.log("asdasdasdasd", res.data.email);
+        console.log("asdasdasdasd", res.data.name);
+
+        const userGG = { name: res.data.name, email: res.data.email };
+        const { response, err } = await userApi.signupGoogle(userGG);
+        console.log("response", response);
+        setIsLoginRequest(false);
+        if (response) {
+          signinForm.resetForm();
+          dispatch(setUser(response));
+          dispatch(setAuthModalOpen(false));
+          toast.success("Sign up success");
+        }
+
+        if (err) setErrorMessage(err.message);
+      } catch (err) {
+        console.log(err);
+      }
+    },
   });
 
   return (
@@ -114,7 +152,14 @@ const SignupForm = ({ switchAuthState }) => {
       >
         sign up
       </LoadingButton>
-
+      <GoogleButton
+      
+      //onClick={handleGoogleLogin}
+      handleGoogleLogin={handleGoogleLogin}
+      //
+      
+      errorMessage={errorMessage}
+    />
       <Button
         fullWidth
         sx={{ marginTop: 1 }}
