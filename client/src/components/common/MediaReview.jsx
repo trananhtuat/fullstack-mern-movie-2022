@@ -35,12 +35,12 @@ const ReviewItem = ({ review, onRemoved }) => {
     }}>
       <Stack direction="row" spacing={2}>
         {/* avatar */}
-        <TextAvatar text={review.user.displayName} />
+        <TextAvatar text={review.user?.displayName} />
         {/* avatar */}
         <Stack spacing={2} flexGrow={1}>
           <Stack spacing={1}>
             <Typography variant="h6" fontWeight="700">
-              {review.user.displayName}
+              {review.user?.displayName}
             </Typography>
             <Typography variant="caption">
               {dayjs(review.createdAt).format("DD-MM-YYYY HH:mm:ss")}
@@ -139,12 +139,12 @@ const MediaReview = ({ reviews, media, mediaType }) => {
       <Container header={`Reviews (${reviewCount})`}>
         <Stack spacing={4} marginBottom={2}>
           {filteredReviews.map((item) => (
-            <Box key={item.id}>
+            item.user ? <Box key={item.id}>
               <ReviewItem review={item} onRemoved={onRemoved} />
               <Divider sx={{
                 display: { xs: "block", md: "none" }
               }} />
-            </Box>
+            </Box> : null
           ))}
           {filteredReviews.length < listReviews.length && (
             <Button onClick={onLoadMore}>load more</Button>
