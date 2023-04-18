@@ -213,9 +213,18 @@ const MediaDetail = () => {
                   {/* buttons */}
 
                   {/* cast */}
+                  {media.credits.cast < 1 ? (
+                  <Container header="Cast">
+                    <div className="swiper-wrapper">
+                      {" "}
+                      There is no cast for this content.{" "}
+                    </div>
+                  </Container>
+                ) : (
                   <Container header="Cast">
                     <CastSlide casts={media.credits.cast} />
                   </Container>
+                )}
                   {/* cast */}
                 </Stack>
               </Box>
@@ -225,11 +234,24 @@ const MediaDetail = () => {
           {/* media content */}
 
           {/* media videos */}
+         {media.videos.results < 1 ? (
           <div ref={videoRef} style={{ paddingTop: "2rem" }}>
             <Container header="Videos">
-              <MediaVideosSlide videos={[...media.videos.results].splice(0, 5)} />
+              <div className="swiper-wrapper">
+                The video of the content has been lost, sorry for the
+                inconvenience.{" "}
+              </div>
             </Container>
           </div>
+        ) : (
+          <div ref={videoRef} style={{ paddingTop: "2rem" }}>
+            <Container header="Videos">
+              <MediaVideosSlide
+                videos={[...media.videos.results].splice(0, 5)}
+              />
+            </Container>
+          </div>
+        )}
           {/* media videos */}
 
           {/* media backdrop */}
