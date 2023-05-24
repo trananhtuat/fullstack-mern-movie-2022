@@ -1,97 +1,53 @@
-import mongoose from "mongoose";
-import crypto from "crypto";
 import userModel from "../../src/models/user.model.js";
+import crypto from 'crypto';
 
-describe("User Model", () => {
-  beforeAll(() => {
-    // Connect to the MongoDB test database
-    const url = "mongodb://localhost:27017/testdb";
-    return mongoose.connect(url, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+describe('User Model', () => {
+  let user;
+
+  beforeEach(() => {
+    user = new userModel();
   });
 
-  afterAll(async () => {
-    // Disconnect from the MongoDB test database
-    await mongoose.connection.close();
+  afterEach(() => {
+    user = null;
   });
 
-  beforeEach(async () => {
-    // Clear the user collection before each test
-    await userModel.deleteMany({});
+  it('should set the username property', () => {
+    const username = 'john.doe';
+    user.username = username;
+    expect(user.username).toBe(username);
   });
 
-  it("should hash the password and set the salt when calling 'setPassword'", async () => {
-    const user = new userModel();
-    const password = "testpassword";
-    const randomBytesMock = jest
-      .spyOn(crypto, "randomBytes")
-      .mockResolvedValue(Buffer.from("randomsalt", "hex"));
-    const pbkdf2SyncMock = jest.spyOn(crypto, "pbkdf2Sync").mockReturnValue(
-      Buffer.from("hashedpassword", "hex")
-    );
+  it('should set the displayName property', () => {
+    const displayName = 'John Doe';
+    user.displayName = displayName;
+    expect(user.displayName).toBe(displayName);
+  });
 
-    await user.setPassword(password);
+  it('should set the password property', () => {
+    const password = 'myPassword';
+    user.setPassword(password);
 
-    expect(user.salt.toString()).toBe("randomsalt");
-    expect(pbkdf2SyncMock).toHaveBeenCalledWith(
+    expect(user.salt).toBeDefined();
+    expect(user.password).toBeDefined();
+    expect(user.password).not.toBe(password);
+
+    const hash = crypto.pbkdf2Sync(
       password,
-      "randomsalt",
+      user.salt,
       1000,
       64,
-      "sha512"
-    );
-    expect(user.password.toString()).toBe("hashedpassword");
-    expect(pbkdf2SyncMock).toHaveBeenCalledTimes(1);
+      'sha512'
+    ).toString('hex');
 
-    randomBytesMock.mockRestore();
-    pbkdf2SyncMock.mockRestore();
+    expect(user.password).toBe(hash);
   });
 
-  
+  it('should validate the password', () => {
+    const password = 'myPassword';
+    user.setPassword(password);
 
-  it("should return true if the password is valid", async() => {
-    const user = new userModel();
-    user.password = "hashedpassword";
-    user.salt = "randomsalt";
-    const pbkdf2SyncMock = jest.spyOn(crypto, "pbkdf2Sync").mockReturnValue(
-      Buffer.from("hashedpassword", "hex")
-    );
-
-    const isValid = await user.validPassword("testpassword");
-
-    expect(pbkdf2SyncMock).toHaveBeenCalledWith(
-      "testpassword",
-      "randomsalt",
-      1000,
-      64,
-      "sha512"
-    );
-    expect(isValid).toBe(true);
-
-    pbkdf2SyncMock.mockRestore();
-  });
-
-  it("should return false if the password is invalid", () => {
-    const user = new userModel();
-    user.password = "hashedpassword";
-    user.salt = "randomsalt";
-    const pbkdf2SyncMock = jest.spyOn(crypto, "pbkdf2Sync").mockReturnValue(
-      Buffer.from("incorrectpassword", "hex")
-    );
-
-    const isValid = user.validPassword("testpassword");
-
-    expect(pbkdf2SyncMock).toHaveBeenCalledWith(
-      "testpassword",
-      "randomsalt",
-      1000,
-      64,
-      "sha512"
-    );
-    expect(isValid).toBe(false);
-
-    pbkdf2SyncMock.mockRestore();
+    expect(user.validPassword(password)).toBe(true);
+    expect(user.validPassword('incorrectPassword')).toBe(false);
   });
 });

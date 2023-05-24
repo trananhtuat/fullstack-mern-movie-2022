@@ -1,34 +1,40 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 import modelOptions from "./model.options.js";
 
-export default mongoose.model(
-  "Review",
-  mongoose.Schema({
+const { Schema } = mongoose;
+
+const reviewSchema = new Schema(
+  {
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
-      required: true
+      required: true,
     },
     content: {
       type: String,
-      required: true
+      required: true,
     },
     mediaType: {
       type: String,
       enum: ["tv", "movie"],
-      required: true
+      required: true,
     },
     mediaId: {
       type: String,
-      required: true
+      required: true,
     },
     mediaTitle: {
       type: String,
-      required: true
+      required: true,
     },
     mediaPoster: {
       type: String,
-      required: true
+      required: true,
     },
-  }, modelOptions)
+  },
+  modelOptions
 );
+
+const Review = mongoose.model("Review", reviewSchema);
+
+export default Review;

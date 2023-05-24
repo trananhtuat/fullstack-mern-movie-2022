@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^1.2.0",
+    "chai": "^4.3.7",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.21.5",
     "babel-jest": "^29.5.0",
-    "jest": "^29.5.0"
+    "jest": "^29.5.0",
+    "sinon": "^15.1.0"
   }
 }
