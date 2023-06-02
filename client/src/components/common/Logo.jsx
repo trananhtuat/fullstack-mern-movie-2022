@@ -5,7 +5,7 @@ const Logo = () => {
 
   return (
     <Typography fontWeight="700" fontSize="1.7rem">
-      NextFilm<span style={{ color: theme.palette.primary.main }}></span>
+      Moon<span style={{ color: theme.palette.primary.main }}>Flix</span>
     </Typography>
   );
 };
